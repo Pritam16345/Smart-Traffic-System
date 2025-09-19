@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smart Traffic Management System</title>
+    <style>
+        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; background-color: #121212; color: #e0e0e0; display: flex; justify-content: center; align-items: center; height: 100vh; margin: 0; }
+        .container { text-align: center; background-color: #1e1e1e; padding: 40px; border-radius: 12px; box-shadow: 0 10px 25px rgba(0,0,0,0.5); }
+        h1 { color: #bb86fc; margin-bottom: 30px; }
+        .metrics, .status { display: flex; justify-content: center; gap: 30px; margin-bottom: 30px; }
+        .metric-box, .status-box { background-color: #2c2c2c; padding: 20px; border-radius: 8px; min-width: 180px; }
+        .metric-box h2, .status-box h2 { margin-top: 0; font-size: 1.2em; color: #a2a2a2; }
+        .metric-box p, .status-box p { font-size: 2.5em; margin-bottom: 0; font-weight: bold; }
+        .improvement { color: #03dac6; }
+        .phase-box { background-color: #bb86fc; color: #121212; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>AI-Powered Smart Traffic Management System</h1>
+        
+        <h2>Performance Evaluation</h2>
+        <div class="metrics">
+            <div class="metric-box">
+                <h2>Baseline Time</h2>
+                <p>161.36 s</p>
+            </div>
+            <div class="metric-box">
+                <h2>AI Agent Time</h2>
+                <p>142.20 s</p>
+            </div>
+            <div class="metric-box">
+                <h2>Improvement</h2>
+                <p class="improvement">+11.87%</p>
+            </div>
+        </div>
+
+        <h2>Live Intersection Status</h2>
+        <div class="status">
+            <div class="status-box">
+                <h2>North Queue</h2>
+                <p id="north-queue">0</p>
+            </div>
+            <div class="status-box">
+                <h2>East Queue</h2>
+                <p id="east-queue">0</p>
+            </div>
+            <div class="status-box">
+                <h2>South Queue</h2>
+                <p id="south-queue">0</p>
+            </div>
+            <div class="status-box">
+                <h2>West Queue</h2>
+                <p id="west-queue">0</p>
+            </div>
+            <div class="status-box phase-box">
+                <h2>Green Light</h2>
+                <p id="green-light">N/A</p>
+            </div>
+        </div>
+    </div>
+    <script src="/static/script.js"></script>
+</body>
+</html>
