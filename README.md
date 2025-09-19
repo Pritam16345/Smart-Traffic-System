@@ -1,4 +1,4 @@
-# SIH Smart Traffic Management System
+# Smart Traffic Management System
 
 This is an AI-based traffic management system developed for the Smart India Hackathon. The system uses Reinforcement Learning (Q-learning) to train an agent that can dynamically control traffic signals to reduce congestion. The simulation is built using SUMO.
 
@@ -17,6 +17,9 @@ This is an AI-based traffic management system developed for the Smart India Hack
 6.  Open your browser to `http://127.0.0.1:5000`.
 
 ## Team Members
-- [Your Name]
-- [Teammate's Name]
-- [Teammate's Name]
+- Pritam Kundu
+- Saswat Panda
+- Shruti Dasgupta
+- Abin Mukherjee
+- Subhadarshini Panda
+- Smruti 
