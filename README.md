@@ -22,4 +22,4 @@ This is an AI-based traffic management system developed for the Smart India Hack
 - Shruti Dasgupta
 - Abin Mukherjee
 - Subhadarshini Panda
-- Smruti 
+- Smruti Prangya
