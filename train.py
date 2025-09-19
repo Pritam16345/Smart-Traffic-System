@@ -9,7 +9,7 @@ if 'SUMO_HOME' in os.environ:
     tools = os.path.join(os.environ['SUMO_HOME'], 'tools')
     sys.path.append(tools)
 else:
-    sys.exit("please declare environment variable 'SUMO_HOME'")
+    sys.exit("declare environment variable 'SUMO_HOME'")
 
 ALPHA = 0.2
 GAMMA = 0.9
@@ -75,11 +75,11 @@ def run_training(episodes):
                 
                 traci.trafficlight.setPhase("C", green_phase_index)
                 for _ in range(5): traci.simulationStep(); step += 1
-            else: # Continue phase
+
+            else:
                 traci.simulationStep()
                 step += 1
 
-            # Get waiting cars AFTER the action to calculate reward
             new_waiting_cars = sum(traci.lane.getLastStepHaltingNumber(lane) for lane in ["N_to_C_0", "E_to_C_0", "S_to_C_0", "W_to_C_0"])
             
             reward = old_waiting_cars - new_waiting_cars
@@ -88,7 +88,6 @@ def run_training(episodes):
             if new_state not in q_table:
                 q_table[new_state] = np.zeros(len(ACTIONS))
             
-
             old_value = q_table[current_state][action]
             next_max = np.max(q_table[new_state])
             new_value = old_value + ALPHA * (reward + GAMMA * next_max - old_value)
@@ -98,7 +97,7 @@ def run_training(episodes):
         epsilon = max(MIN_EPSILON, epsilon * EPSILON_DECAY)
         print(f"Episode {episode+1}/{episodes} finished. Epsilon: {epsilon:.4f}")
 
-    with open('q_table.pkl', 'wb') as f:
+    with open('agent_q_table.pkl', 'wb') as f:
         pickle.dump(q_table, f)
     
     print("\nTraining complete! Q-table saved.")

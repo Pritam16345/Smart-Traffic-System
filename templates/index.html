@@ -4,16 +4,95 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Smart Traffic Management System</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
     <style>
-        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; background-color: #121212; color: #e0e0e0; display: flex; justify-content: center; align-items: center; height: 100vh; margin: 0; }
-        .container { text-align: center; background-color: #1e1e1e; padding: 40px; border-radius: 12px; box-shadow: 0 10px 25px rgba(0,0,0,0.5); }
-        h1 { color: #bb86fc; margin-bottom: 30px; }
-        .metrics, .status { display: flex; justify-content: center; gap: 30px; margin-bottom: 30px; }
-        .metric-box, .status-box { background-color: #2c2c2c; padding: 20px; border-radius: 8px; min-width: 180px; }
-        .metric-box h2, .status-box h2 { margin-top: 0; font-size: 1.2em; color: #a2a2a2; }
-        .metric-box p, .status-box p { font-size: 2.5em; margin-bottom: 0; font-weight: bold; }
-        .improvement { color: #03dac6; }
-        .phase-box { background-color: #bb86fc; color: #121212; }
+        :root {
+            --bg-color: #0d1117;
+            --card-bg-color: rgba(22, 27, 34, 0.6);
+            --border-color: rgba(139, 148, 158, 0.2);
+            --text-primary: #c9d1d9;
+            --text-secondary: #8b949e;
+            --accent-color: #58a6ff;
+            --color-green: #3fb950;
+            --color-yellow: #d29922;
+            --color-red: #f85149;
+        }
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-primary);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+        }
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            background: var(--card-bg-color);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            padding: 40px;
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+        }
+        h1 {
+            color: var(--accent-color);
+            text-align: center;
+            margin-top: 0;
+            font-weight: 600;
+        }
+        h2 {
+            text-align: center;
+            color: var(--text-secondary);
+            font-weight: 400;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 15px;
+            margin-bottom: 30px;
+        }
+        .grid-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 25px;
+        }
+        .card {
+            background-color: rgba(36, 41, 47, 0.5);
+            border: 1px solid var(--border-color);
+            border-radius: 10px;
+            padding: 25px;
+            text-align: center;
+        }
+        .card h3 {
+            margin: 0 0 10px 0;
+            color: var(--text-secondary);
+            font-size: 1.1em;
+            font-weight: 400;
+        }
+        .card .value {
+            font-size: 3em;
+            font-weight: 700;
+            margin: 0;
+            line-height: 1;
+        }
+        .improvement { color: var(--color-green); }
+        .phase-card { grid-column: 1 / -1; } /* Make phase card span full width */
+        .phase-light {
+            width: 40px;
+            height: 40px;
+            margin: 10px auto 0 auto;
+            border-radius: 50%;
+            background-color: #333;
+            transition: all 0.3s ease;
+        }
+        .phase-light.green {
+            background-color: var(--color-green);
+            box-shadow: 0 0 20px var(--color-green);
+        }
+        .text-green { color: var(--color-green); }
+        .text-yellow { color: var(--color-yellow); }
+        .text-red { color: var(--color-red); }
     </style>
 </head>
 <body>
@@ -21,42 +100,43 @@
         <h1>AI-Powered Smart Traffic Management System</h1>
         
         <h2>Performance Evaluation</h2>
-        <div class="metrics">
-            <div class="metric-box">
-                <h2>Baseline Time</h2>
-                <p>161.36 s</p>
+        <div class="grid-container">
+            <div class="card">
+                <h3>Baseline Time</h3>
+                <p class="value">161.36 s</p>
             </div>
-            <div class="metric-box">
-                <h2>AI Agent Time</h2>
-                <p>142.20 s</p>
+            <div class="card">
+                <h3>AI Agent Time</h3>
+                <p class="value">142.20 s</p>
             </div>
-            <div class="metric-box">
-                <h2>Improvement</h2>
-                <p class="improvement">+11.87%</p>
+            <div class="card">
+                <h3>Improvement</h3>
+                <p class="value improvement">+11.87%</p>
             </div>
         </div>
 
         <h2>Live Intersection Status</h2>
-        <div class="status">
-            <div class="status-box">
-                <h2>North Queue</h2>
-                <p id="north-queue">0</p>
+        <div class="grid-container">
+            <div class="card">
+                <h3>North Queue</h3>
+                <p class="value" id="north-queue">0</p>
             </div>
-            <div class="status-box">
-                <h2>East Queue</h2>
-                <p id="east-queue">0</p>
+            <div class="card">
+                <h3>East Queue</h3>
+                <p class="value" id="east-queue">0</p>
             </div>
-            <div class="status-box">
-                <h2>South Queue</h2>
-                <p id="south-queue">0</p>
+            <div class="card">
+                <h3>South Queue</h3>
+                <p class="value" id="south-queue">0</p>
             </div>
-            <div class="status-box">
-                <h2>West Queue</h2>
-                <p id="west-queue">0</p>
+             <div class="card">
+                <h3>West Queue</h3>
+                <p class="value" id="west-queue">0</p>
             </div>
-            <div class="status-box phase-box">
-                <h2>Green Light</h2>
-                <p id="green-light">N/A</p>
+            <div class="card phase-card">
+                <h3>Active Green Light</h3>
+                <p class="value" id="green-light-direction">N/A</p>
+                <div class="phase-light" id="phase-indicator"></div>
             </div>
         </div>
     </div>

@@ -52,7 +52,7 @@ def choose_best_action(state, q_table):
 def run_simulation_logic():
     """This function contains your agent's logic and will run in a separate thread."""
     try:
-        with open('final_agent_brain.pkl', 'rb') as f:
+        with open('q_table.pkl', 'rb') as f:
             q_table = pickle.load(f)
         print("Q-table loaded successfully for simulation.")
     except FileNotFoundError:
